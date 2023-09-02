@@ -13,6 +13,7 @@ import se331.lab.rest.entity.Event;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.HttpHeaders;
+import se331.lab.rest.entity.Organizer;
 import se331.lab.rest.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -54,5 +55,36 @@ final EventService eventService;
         }
     }
 
+// add organizer
+@GetMapping("organizers")
+public ResponseEntity<?> getOrganizerLists(
+        @RequestParam(value = "_limit", required = false) Integer perPage,
+        @RequestParam(value= "_page", required = false) Integer page){
 
+    List<Organizer> output = null;
+    Integer eventSize = eventService.getOrganizerSize();
+
+    HttpHeaders responseHeader = new HttpHeaders();
+
+    responseHeader.set("x.total-count", String.valueOf(eventSize));
+
+    try{
+        output = eventService.getOrganizers(perPage, page);
+        return new ResponseEntity<>(output, responseHeader, HttpStatus.OK);
+
+    } catch (IndexOutOfBoundsException ex){
+        return new ResponseEntity<>(output, responseHeader, HttpStatus.OK);
+
+    }
+}
+
+    @GetMapping("organizer/{id}")
+    public ResponseEntity<?> getOrganizer(@PathVariable("id") Long id) {
+        Event output = eventService.getOrganizer(id);
+        if(output != null) {
+            return ResponseEntity.ok(output);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "The given id is not found");
+        }
+    }
 }
