@@ -35,7 +35,7 @@ public class EventController {
         }
         }
 
-    @GetMapping("event/{id}")
+    @GetMapping("/event/{id}")
     public ResponseEntity<?> getEvent(@PathVariable("id") Long id) {
         Event output = null;
         for(Event event : eventList) {
