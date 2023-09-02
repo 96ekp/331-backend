@@ -1,14 +1,21 @@
 package se331.lab.rest.controller;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import se331.lab.rest.entity.Event;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Controller
 public class EventController {
     List<Event> eventList;
+    @GetMapping("events")
+    public ResponseEntity<?> getEventLists(){
+        return ResponseEntity.ok(eventList);
+    }
 
 
     @PostConstruct
