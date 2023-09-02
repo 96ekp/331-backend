@@ -16,7 +16,7 @@ import java.util.List;
 @Controller
 public class EventController {
     List<Event> eventList;
-    @GetMapping("/event")
+    @GetMapping("event")
     public ResponseEntity<?> getEventLists(
             @RequestParam(value = "_limit", required = false) Integer perPage,
             @RequestParam(value= "_page", required = false) Integer page){
@@ -35,7 +35,7 @@ public class EventController {
         }
         }
 
-    @GetMapping("/event/{id}")
+    @GetMapping("event/{id}")
     public ResponseEntity<?> getEvent(@PathVariable("id") Long id) {
         Event output = null;
         for(Event event : eventList) {
