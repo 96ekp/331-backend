@@ -13,7 +13,7 @@ import java.util.List;
 @Controller
 public class EventController {
     List<Event> eventList;
-    @GetMapping("events")
+    @GetMapping("/event")
     public ResponseEntity<?> getEventLists(
             @RequestParam(value = "_limit", required = false) Integer perPage,
             @RequestParam(value= "_page", required = false) Integer page){
