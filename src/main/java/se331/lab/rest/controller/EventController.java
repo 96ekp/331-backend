@@ -4,6 +4,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import se331.lab.rest.entity.Event;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +14,18 @@ import java.util.List;
 public class EventController {
     List<Event> eventList;
     @GetMapping("events")
-    public ResponseEntity<?> getEventLists(){
-        return ResponseEntity.ok(eventList);
+    public ResponseEntity<?> getEventLists(
+            @RequestParam(value = "_limit", required = false) Integer perPage,
+            @RequestParam(value= "_page", required = false) Integer page){
+        perPage = perPage == null?eventList.size():perPage;
+        page = page  == null?1:page;
+        Integer firstIndex = (page -1) * perPage;
+        List<Event> output = new ArrayList<>();
+        for(int i = firstIndex; i < firstIndex + perPage; i++){
+            output.add(eventList.get(i));
+        }
+        return ResponseEntity.ok(output);
+
     }
 
 
