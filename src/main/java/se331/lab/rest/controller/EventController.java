@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import se331.lab.rest.entity.Event;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.http.HttpHeaders;
 
 
 @Controller
@@ -25,13 +26,18 @@ public class EventController {
         Integer firstIndex = (page -1) * perPage;
         List<Event> output = new ArrayList<>();
 
+        HttpHeaders responseHeader = new HttpHeaders();
+        responseHeader.set("x-total-count", String.valueOf(eventList.size()));
+
         try{
             for(int i = firstIndex; i < firstIndex + perPage; i++){
                 output.add(eventList.get(i));
             }
-            return ResponseEntity.ok(output);
+            return new ResponseEntity<>(output, responseHeader, HttpStatus.OK);
+
         } catch (IndexOutOfBoundsException ex){
-            return  ResponseEntity.ok(output);
+            return new ResponseEntity<>(output, responseHeader, HttpStatus.OK);
+
         }
         }
 
