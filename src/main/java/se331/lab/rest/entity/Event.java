@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class event {
+public class Event {
     Long id;
     String category;
     String title;
