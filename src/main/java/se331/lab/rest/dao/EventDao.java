@@ -2,7 +2,7 @@ package se331.lab.rest.dao;
 
 import se331.lab.rest.entity.Event;
 import java.util.List;
-import se331.lab.rest.entity.Organizer;
+
 
 public interface EventDao {
     Integer getEventSize();
@@ -11,9 +11,6 @@ public interface EventDao {
 
 
 
-    // add organizers
-    Integer getOrganizerSize();
-    List<Organizer> getOrganizers(Integer pageSize, Integer page);
-    Event getOrganizer(Long id);
+
 
 }
