@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class Organizer extends Event {
+public class Organizer {
     Long id;
     String organizationName;
     String address;

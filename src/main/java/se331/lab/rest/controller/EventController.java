@@ -1,6 +1,5 @@
 package se331.lab.rest.controller;
 
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,12 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 import se331.lab.rest.entity.Event;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.HttpHeaders;
-import se331.lab.rest.entity.Organizer;
 import se331.lab.rest.service.EventService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 
 
