@@ -6,6 +6,7 @@ import se331.lab.rest.entity.Event;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Repository
 public class EventDaoImpl implements EventDao {
     List<Event> eventList;
