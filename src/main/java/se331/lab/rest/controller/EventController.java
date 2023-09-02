@@ -1,6 +1,7 @@
 package se331.lab.rest.controller;
 
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,10 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 @Controller
+@RequiredArgsConstructor
 public class EventController {
-//final EventService eventService;
-
-
+final EventService eventService;
     @GetMapping("events")
     public ResponseEntity<?> getEventLists(
             @RequestParam(value = "_limit", required = false) Integer perPage,
@@ -53,7 +53,6 @@ public class EventController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "The given id is not found");
         }
     }
-    @Autowired
-    EventService eventService;
+
 
 }
